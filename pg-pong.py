@@ -3,6 +3,8 @@ import numpy as np
 import cPickle as pickle
 import gym
 
+StartTime = time.process_time()  #For CPU execution time
+
 # hyperparameters
 H = 200 # number of hidden layer neurons
 batch_size = 10 # every how many episodes to do a param update?
@@ -128,5 +130,12 @@ while True:
     observation = env.reset() # reset env
     prev_x = None
 
+# get the end time
+    EndTime = time.process_time()
+
   if reward != 0: # Pong has either +1 or -1 reward exactly when game ends.
     print ('ep %d: game finished, reward: %f' % (episode_number, reward)) + ('' if reward == -1 else ' !!!!!!!!')
+# get execution time
+    TotalTime =  EndTime - StartTime
+    print('CPU Execution time:', TotalTime, 'seconds')
+
